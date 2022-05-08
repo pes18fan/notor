@@ -5,8 +5,6 @@
 #include <stdlib.h>
 
 void parseOptions(int argc, char** argv) {
-    gflags::ParseCommandLineFlags(&argc, &argv, true);
-
     if (strcmp(argv[1], "ver") == 0) {
         std::cout << "Notor version 0.0.1" << std::endl;
         std::cout << "Written by pes18fan, 2022." << std::endl;
