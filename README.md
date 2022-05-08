@@ -6,6 +6,8 @@ A simple terminal-based app that you can use to take and store short notes.
 
 ## Linux
 
+__ncurses and cmake required to build from source.__
+
 First, clone the repo.
 
 ```shell
