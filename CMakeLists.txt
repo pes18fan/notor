@@ -6,11 +6,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_compile_options(-Wall)
 
-find_package(gflags REQUIRED)
-
 add_executable(${PROJ_NAME} main.cpp options.cpp)
 
-target_link_libraries(${PROJ_NAME} PUBLIC ncurses gflags::gflags)
+target_link_libraries(${PROJ_NAME} PUBLIC ncurses)
 
 set(${PROJ_NAME}_PATH_INSTALL "/usr/bin")
 
