@@ -1,10 +1,12 @@
-#include "flags.h"
+#include "options.h"
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
 
-void flags(int argc, char** argv) {
+void parseOptions(int argc, char** argv) {
+    gflags::ParseCommandLineFlags(&argc, &argv, true);
+
     if (strcmp(argv[1], "ver") == 0) {
         std::cout << "Notor version 0.0.1" << std::endl;
         std::cout << "Written by pes18fan, 2022." << std::endl;
@@ -22,6 +24,5 @@ void flags(int argc, char** argv) {
 	std::cout << "Written by pes18fan, 2022." << std::endl;
     } else {
         std::cout << "Invalid argument \"" << argv[1] << "\"" << std::endl;
-    }
+    }  
 }
-

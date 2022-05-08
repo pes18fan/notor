@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ncurses.h>
-#include "flags.h"
+#include "options.h"
 
 void endRun();
 
@@ -14,8 +14,8 @@ class Notes {
 };
 
 int main(int argc, char** argv) {
-    if (argv[1] != NULL) {
-	flags(argc, argv);
+    if (argc > 1) {
+	parseOptions(argc, argv);
 	return 0;
     }
 

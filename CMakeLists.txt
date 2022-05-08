@@ -6,9 +6,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_compile_options(-Wall)
 
-add_executable(notor main.cpp flags.cpp)
+find_package(gflags REQUIRED)
 
-target_link_libraries(notor PUBLIC ncurses)
+add_executable(${PROJ_NAME} main.cpp options.cpp)
+
+target_link_libraries(${PROJ_NAME} PUBLIC ncurses gflags::gflags)
 
 set(${PROJ_NAME}_PATH_INSTALL "/usr/bin")
 
