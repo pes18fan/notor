@@ -14,11 +14,11 @@ First, clone the repo.
 git clone https://www.github.com/pes18fan141/notor.git
 ```
 
-Go into the directory and install using `cmake` and `make`.
+Go into the directory, make a build folder, move to it and install using `cmake` and `make`.
 
 ```shell
-cd notor
-cmake .
+cd notor && mkdir build && cd build
+cmake ..
 make
 sudo make install
 ```
