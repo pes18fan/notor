@@ -33,6 +33,6 @@ The Windows `.exe` file is available in the releases section of this repository.
 
 # Usage
 
-Type in `notor new` to create a new note. Enter a title first, which will be what your note will get saved as, and afterward whatever you wish to enter. Press `Ctrl+O` after you're done to save the note.
+Type in `notor create` to create a new note. Enter a title first, which will be what your note will get saved as, and afterward whatever you wish to enter. Press `Ctrl+O` after you're done to save the note.
 
 You can run `notor help` to get a guide to some basic commands usable in the app.
