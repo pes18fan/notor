@@ -1,4 +1,5 @@
-// this file does all the parsing for the commandline arguments. Will likely be replaced soon with a more effective solution like gflags or getopt
+// this file does all the parsing for the commandline arguments. 
+// that will likely be replaced soon with a more effective solution like gflags or getopt
 #include "options.h"
 #include <iostream>
 #include <string>
