@@ -3,4 +3,9 @@
 
 void parseOptions(int, char**);
 
+void ver();
+void pog();
+void help();
+void create();
+
 #endif
