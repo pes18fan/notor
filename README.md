@@ -10,22 +10,19 @@ __ncurses and cmake required to build from source.__
 
 First, clone the repo.
 
-```shell
+```bash
 git clone https://www.github.com/pes18fan141/notor.git
 ```
 
 Go into the directory, make a build folder, move to it and install using `cmake` and `make`.
 
-```shell
+```bash
 cd notor && mkdir build && cd build
 cmake ..
 make
 sudo make install
 ```
-
-### Termux
-
-For termux users, after cloning the repo, comment out or erase the set install path in `CMakeLists.txt` and uncomment the line 3 lines below it that defines the path as the termux bin path. After that run `cmake` and `make` same as above.
+You might want to change your install path before installation. To do so, simply change the default path of `usr/local/bin` to whatever path you wish in line 14 of the `CMakeLists.txt` file and then install.
 
 ## Windows
 
