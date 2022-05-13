@@ -22,7 +22,7 @@ cmake ..
 make
 sudo make install
 ```
-You might want to change your install path before installation. To do so, simply change the default path of `usr/local/bin` to whatever path you wish in line 14 of the `CMakeLists.txt` file and then install.
+You might want to change your install path before installation. To do so, simply change the default path set as `/usr/local/bin` to whatever path you wish in line 14 of the `CMakeLists.txt` file and then install.
 
 ## Windows
 
