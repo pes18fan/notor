@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_compile_options(-Wall)
 
-add_executable(${PROJ_NAME} main.cpp options.cpp)
+add_executable(${PROJ_NAME} ./src/main.cpp ./src/options.cpp)
 
 target_link_libraries(${PROJ_NAME} PUBLIC ncurses)
 
