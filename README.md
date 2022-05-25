@@ -6,7 +6,7 @@ A simple terminal-based app that you can use to take and store short notes.
 
 ### Linux
 
-Install Crystal first to build the app.
+Install [Crystal](https://crystal-lang.org/install/) first to build the app.
 
 Then, clone the repo.
 
