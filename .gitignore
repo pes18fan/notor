@@ -1,5 +1,5 @@
-build/
-
-*.exe
-*.out
-*.app
+/docs/
+/lib/
+/bin/
+/.shards/
+*.dwarf
