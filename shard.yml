@@ -11,6 +11,9 @@ targets:
 dependencies:
   ncurses:
     github: SamualLB/ncurses
+  clim:
+    github: at-grandpa/clim
+    version: 0.17.1
 
 crystal: 1.4.1
 
