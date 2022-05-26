@@ -31,9 +31,17 @@ The Windows `.exe` file is available in the releases section of this repository.
 
 ## Usage
 
-Type in `notor new` to create a new note. Enter a title first, which will be what your note will get saved as, and afterward whatever you wish to enter. Press `Ctrl+O` after you're done to save the note.
+You can run `notor --help` to get a guide to some basic commands usable in the app.
 
-You can run `notor help` to get a guide to some basic commands usable in the app.
+## Uninstalling
+
+Go into the source directory that you cloned from GitHub while installing the app, and run the given command:
+
+```bash
+sudo make uninstall
+```
+
+If the source directory does not exist anymore, you can remove the binary named `notor` directly from the install path.
 
 ## Contributing
 
