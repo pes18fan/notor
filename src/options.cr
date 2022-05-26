@@ -27,4 +27,9 @@ OptionParser.parse do |parser|
     STDERR.puts parser
     exit(1)
   end
+
+  if ARGV.size == 0
+      puts parser
+      exit
+  end
 end

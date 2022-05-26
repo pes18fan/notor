@@ -1,7 +1,7 @@
 require "ncurses"
 require "./options"
 
-class Notes
+class Note
   def initialize(title, subject)
     @title = title
     @subject = subject
