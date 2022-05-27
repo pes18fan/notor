@@ -33,7 +33,8 @@ class Cli < Clim
 
     desc "notor: A command line note creator" 
     usage <<-USAGE 
-    Usage: notor [subcommand] [flags] [arguments]
+    Usage: notor [flags]
+	   notor [subcommand] [flags] [arguments]
     USAGE
     help short: "-h"
     version "notor version 0.0.1\nWritten by pes18fan, 2022.", short: "-v"
