@@ -7,7 +7,7 @@ all:
 	crystal build src/main.cr -o $(TARGET)
 
 clean:
-	rm -f bin/debug/* bin/release/*
+	$(RM) bin/debug/* bin/release/*
 
 release:
 	crystal build --release src/main.cr -o $(RELEASE)
