@@ -16,7 +16,7 @@ class Cli < Clim
 
       #{usage}
 
-      Options:
+      Flags:
       #{options_help_lines.join("\n")}
 
       BASE_HELP
@@ -33,10 +33,10 @@ class Cli < Clim
 
     desc "notor: A command line note creator" 
     usage <<-USAGE 
-    Usage: notor [options] [arguments]
+    Usage: notor [subcommand] [flags] [arguments]
     USAGE
     help short: "-h"
-    version "version 0.0.1", short: "-v"
+    version "notor version 0.0.1\nWritten by pes18fan, 2022.", short: "-v"
 
     sub "pog" do
       desc "poggers!"

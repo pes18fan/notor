@@ -18,6 +18,7 @@ Go into the directory and build and install as follows.
 
 ```bash
 cd notor
+mkdir -p bin/release/
 shards install
 make release
 sudo make install
