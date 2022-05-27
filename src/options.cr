@@ -28,8 +28,6 @@ class Cli < Clim
       #{sub_commands_help_lines.join("\n")}
 
       SUB_HELP
-
-      sub_commands.empty? ? base : base + sub
     end
 
     desc "notor: A command line note creator" 
