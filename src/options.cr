@@ -1,3 +1,4 @@
+require "./globals"
 require "colorize"
 require "clim"
 
@@ -17,26 +18,34 @@ class Cli < Clim
 
       #{usage}
 
-      Flags:
+      #{"FLAGS:".colorize(:yellow).on(:black)}
       #{options_help_lines.join("\n")}
 
       BASE_HELP
 
       sub = <<-SUB_HELP
       
-      Subcommands:
+      #{"SUBCOMMANDS:".colorize(:yellow).on(:black)}
       #{sub_commands_help_lines.join("\n")}
 
       SUB_HELP
+
+      base + sub
     end
 
-    desc "notor: A command line note creator" 
+    desc <<-DESC
+    #{"notor".colorize(:green).on(:black)} #{Globals.version}
+    A command line note creator.
+    DESC
+
     usage <<-USAGE
-    Usage: notor [flags]
-	   notor [subcommand] [flags] [arguments]
+    #{"USAGE:".colorize(:yellow).on(:black)}
+    \tnotor [flags]
+    \tnotor [subcommand] [flags] [arguments]
     USAGE
+
     help short: "-h"
-    version "notor version 0.0.1\nWritten by pes18fan, 2022.", short: "-v"
+    version "notor version #{Globals.version}\nWritten by pes18fan, 2022.", short: "-v"
 
     sub "pog" do
       desc "poggers!"
@@ -51,7 +60,7 @@ class Cli < Clim
       if args.all_args.empty?
 	puts opts.help_string
       else
-	puts "#{"ERROR:".colorize(:red).on(:black)} Invalid subcommand. \"#{args.all_args.first}\""
+	  puts "#{"ERROR:".colorize(:red).on(:black)} Invalid subcommand. \"#{args.all_args.first}\""
 	puts "\nPlease see the `--help`."
       end
       exit
