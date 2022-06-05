@@ -60,7 +60,7 @@ class Cli < Clim
       if args.all_args.empty?
 	puts opts.help_string
       else
-	  puts "#{"ERROR:".colorize(:red).on(:black)} Invalid subcommand. \"#{args.all_args.first}\""
+	puts "#{"ERROR:".colorize(:red).on(:black)} Invalid subcommand. \"#{args.all_args.first}\""
 	puts "\nPlease see the `--help`."
       end
       exit
