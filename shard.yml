@@ -9,8 +9,6 @@ targets:
     main: src/main.cr
 
 dependencies:
-  ncurses:
-    github: SamualLB/ncurses
   clim:
     github: at-grandpa/clim
     version: 0.17.1

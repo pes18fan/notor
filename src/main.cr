@@ -1,4 +1,3 @@
-require "ncurses"
 require "./options"
 
 Cli.start(ARGV)
