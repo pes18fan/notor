@@ -7,7 +7,7 @@ class Note
     @@number_of_notes
   end
 
-  def self.note
+  def self.note_data
     @note_data
   end
 
