@@ -11,6 +11,10 @@ class Cli < Clim
         "\t#{option[:names].join(", ").colorize(:green)}\t#{option[:desc]}"
       end
 
+      arguments_help_lines = arguments.map do |argument|
+        "\t#{argument[:display_name].colorize(:green)}\t#{argument[:desc]}"
+      end
+
       sub_commands_help_lines = sub_commands.map do |sub_command|
         "\t#{sub_command[:names].join(", ").colorize(:green)}\t#{sub_command[:desc]}"
       end
@@ -25,14 +29,34 @@ class Cli < Clim
 
       BASE_HELP
 
-      sub = <<-SUB_HELP
-      
+      args = <<-ARGS_HELP
+
+      #{"ARGUMENTS:".colorize(:yellow)}
+      #{arguments_help_lines.join("\n")}
+
+      ARGS_HELP
+
+      sub = <<-SUB_HELP 
+
       #{"SUBCOMMANDS:".colorize(:yellow)}
       #{sub_commands_help_lines.join("\n")}
 
       SUB_HELP
 
-      sub_commands.empty? ? base : base + sub
+      base if arguments.empty? && sub_commands.empty?
+      base + args if sub_commands.empty? && !arguments.empty?
+      base + sub if arguments.empty? && !sub_commands.empty?
+      base + sub + args if !arguments.empty? && !sub_commands.empty?
+
+      if arguments.empty? && sub_commands.empty?
+        base
+      elsif arguments.empty? && !sub_commands.empty?
+        base + sub
+      elsif sub_commands.empty? && !arguments.empty?
+        base + args
+      else
+        base + sub + args
+      end
     end
 
     desc <<-DESC
