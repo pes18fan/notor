@@ -4,8 +4,10 @@ require "./note_to_file"
 require "colorize"
 require "clim"
 
+# Class that defines the flags, subcommands and arguments usable for the binary.
 class Cli < Clim
   main do
+    # This block defines the template for the program help shown when the binary is run with the `--help` flag.
     help_template do |desc, usage, options, arguments, sub_commands|
       options_help_lines = options.map do |option|
         "\t#{option[:names].join(", ").colorize(:green)}\t#{option[:desc]}"
@@ -36,7 +38,7 @@ class Cli < Clim
 
       ARGS_HELP
 
-      sub = <<-SUB_HELP 
+      sub = <<-SUB_HELP
 
       #{"SUBCOMMANDS:".colorize(:yellow)}
       #{sub_commands_help_lines.join("\n")}
@@ -68,6 +70,7 @@ class Cli < Clim
     help short: "-h"
     version "notor version #{Globals.version}\nWritten by pes18fan, 2022.", short: "-v"
 
+    # Subcommand to create a new note.
     sub "new" do
       desc "Create a new note"
       usage "notor new [TITLE] [CONTENT]"
@@ -95,6 +98,7 @@ class Cli < Clim
       end
     end
 
+    # Subcommand to print the number of notes to stdout.
     sub "num" do
       desc "Display number of notes present"
       usage "notor num"

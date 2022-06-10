@@ -1,6 +1,7 @@
+# Class that defines the notes.
 class Note
   @@number_of_notes = 0
-  
+
   property note_data = {} of String => String
 
   def self.number_of_notes

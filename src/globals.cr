@@ -1,3 +1,4 @@
+# Class holding global variables.
 class Globals
   @@version : String = {{ `shards version #{__DIR__}`.chomp.stringify }}
   @@files_dir : String = `echo $HOME/.notor`.chomp
