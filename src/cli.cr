@@ -43,11 +43,6 @@ class Cli < Clim
 
       SUB_HELP
 
-      base if arguments.empty? && sub_commands.empty?
-      base + args if sub_commands.empty? && !arguments.empty?
-      base + sub if arguments.empty? && !sub_commands.empty?
-      base + sub + args if !arguments.empty? && !sub_commands.empty?
-
       if arguments.empty? && sub_commands.empty?
         base
       elsif arguments.empty? && !sub_commands.empty?
