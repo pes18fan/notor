@@ -4,6 +4,8 @@ require "./note_to_file"
 require "colorize"
 require "clim"
 
+# This file manages the basic user interface, which includes command line flags, subcommands and args.
+
 # Class that defines the flags, subcommands and arguments usable for the binary.
 class Cli < Clim
   main do

@@ -1,6 +1,9 @@
 require "json"
 require "./notes"
 
+# This file manages the pulling and pushing of notes data from and to a json file that stores the notes.
+# TODO: Add a feature to delete notes
+
 # Function to write notes to a json file.
 def notes_to_json
   notes_json_string = JSON.build do |json|
