@@ -13,9 +13,9 @@ release:
 	crystal build --release src/main.cr -o $(RELEASE)
 
 install:
-	mkdir $(HOME)/.notor
-	mv $(RELEASE) $(INSTALL)
-	echo "Successfully installed! If you got a cannot create directory error, don't worry, the program will work just fine. Enjoy!"
+	@mkdir $(HOME)/.notor
+	@mv $(RELEASE) $(INSTALL)
+	@echo "Successfully installed! If you got a cannot create directory error, don't worry, the program will work just fine. Enjoy!"
 
 uninstall:
 	$(RM) $(INSTALL)/$(EXEC_NAME)
