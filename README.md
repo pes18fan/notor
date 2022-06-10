@@ -4,7 +4,7 @@ A simple terminal-based app that you can use to take and store short notes.
 
 ## Installation
 
-### Linux
+Follow the following instructions to build and install the app.
 
 Install [Crystal](https://crystal-lang.org/install/) first to build the app.
 
@@ -25,10 +25,6 @@ sudo make install
 ```
 
 By default, the binary will install to the path `/usr/local/bin`. To change that, change the final `sudo make install` command to `sudo make INSTALL=<path> install` where you replace `<path>` with the install path of your choice.
-
-### Windows
-
-The Windows `.exe` file is available in the releases section of this repository.
 
 ## Usage
 
