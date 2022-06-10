@@ -1,6 +1,6 @@
 require "./notes"
 require "./globals"
-require "./configs"
+require "./note_to_file"
 require "colorize"
 require "clim"
 

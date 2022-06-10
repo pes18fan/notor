@@ -1,3 +1,3 @@
-require "./options"
+require "./cli"
 
 Cli.start(ARGV)
