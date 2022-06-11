@@ -30,6 +30,11 @@ end
 
 # Function to pull notes from the json file if they are already present.
 def pull_notes
+  # Block to check if the folder holding notor's data exists. If installed using make, this directory is made automatically.
+  unless Dir.exists?(Globals.files_dir)
+    Dir.mkdir(Globals.files_dir)
+  end
+
   # Block to check if the json file storing the notes exists, and create it in proper format if it does not.
   unless File.exists?(Globals.notes_file)
     json_file = File.new(Globals.notes_file, "w")
