@@ -105,7 +105,6 @@ class Cli < Clim
       desc "Display the contents of the specified note"
       usage "notor cat [title]"
 
-
       argument "title",
         desc: "The title of the note to print",
         type: String
@@ -116,12 +115,38 @@ class Cli < Clim
         elsif args.title.to_s.empty?
           puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to print!"
         else
+          count = 0
+
           Globals.notes_array.tap &.each do |note|
-            if note[args.title.to_s] != nil
-              puts note[args.title.to_s]
-            end
+            begin
+              puts <<-NOTE
+              #{"NOTE TITLE:".colorize(:yellow)} #{args.title.to_s}
+
+              #{note[args.title.to_s]}
+              NOTE
+
+              count += 1
+            rescue KeyError
+              next
+            end 
+          end
+
+          if count == 0
+              puts "Note \"#{args.title.to_s}\" not found."
           end
         end
+      end
+    end
+
+    # Subcommand to delete all notes.
+    sub "reset" do
+      desc "Delete all notes"
+      usage "notor reset"
+
+      run do
+        reset_notes
+        puts "All notes deleted."
+        exit
       end
     end
 
@@ -129,8 +154,9 @@ class Cli < Clim
     sub "num" do
       desc "Display number of notes present"
       usage "notor num"
-      run do |opts, args|
-        puts "#{Note.number_of_notes} notes present."
+
+      run do
+        puts "#{Globals.notes_array.size} notes present."
         exit
       end
     end
