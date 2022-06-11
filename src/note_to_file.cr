@@ -38,7 +38,8 @@ def pull_notes
       json.object do
         json.field "note_number", Globals.notes_array.size
         json.field "notes" do
-          json.array do end
+          json.array do
+          end
         end
       end
     end
@@ -51,7 +52,7 @@ def pull_notes
   notes_json = File.open(Globals.notes_file) do |file|
     JSON.parse(file)
   end
-  
+
   notes = Array(Hash(String, String)).from_json(notes_json["notes"].to_json)
 
   notes.tap &.each do |note|
@@ -74,7 +75,8 @@ def reset_notes
     json.object do
       json.field "note_number", Globals.notes_array.size
       json.field "notes" do
-          json.array do end
+        json.array do
+        end
       end
     end
   end

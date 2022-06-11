@@ -128,11 +128,11 @@ class Cli < Clim
               count += 1
             rescue KeyError
               next
-            end 
+            end
           end
 
           if count == 0
-              puts "Note \"#{args.title.to_s}\" not found."
+            puts "Note \"#{args.title.to_s}\" not found."
           end
         end
       end
