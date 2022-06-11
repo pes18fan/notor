@@ -75,7 +75,7 @@ class Cli < Clim
     # Subcommand to create a new note.
     sub "new" do
       desc "Create a new note"
-      usage "notor new [TITLE] [CONTENT]"
+      usage "notor new [title] [content]"
 
       argument "title",
         desc: "The title of the note",
@@ -96,6 +96,31 @@ class Cli < Clim
           write_note(Note.new(args.title.to_s, args.content.to_s))
           puts "New note #{args.title.to_s} created!"
           exit
+        end
+      end
+    end
+
+    # Subcommand to print the specified note to stdout.
+    sub "cat" do
+      desc "Display the contents of the specified note"
+      usage "notor cat [title]"
+
+
+      argument "title",
+        desc: "The title of the note to print",
+        type: String
+
+      run do |opts, args|
+        if !args.unknown_args.empty?
+          puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
+        elsif args.title.to_s.empty?
+          puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to print!"
+        else
+          Globals.notes_array.tap &.each do |note|
+            if note[args.title.to_s] != nil
+              puts note[args.title.to_s]
+            end
+          end
         end
       end
     end
