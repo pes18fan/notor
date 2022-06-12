@@ -1,6 +1,6 @@
 require "./notes"
 require "./globals"
-require "./note_file_handler"
+require "./note_handler"
 require "colorize"
 require "clim"
 
@@ -76,6 +76,7 @@ class Cli < Clim
     sub "new" do
       desc "Create a new note"
       usage "notor new [title] [content]"
+      help short: "-h"
 
       argument "title",
         desc: "The title of the note",
@@ -104,6 +105,7 @@ class Cli < Clim
     sub "cat" do
       desc "Display the contents of the specified note"
       usage "notor cat [title]"
+      help short: "-h"
 
       argument "title",
         desc: "The title of the note to print",
@@ -115,25 +117,34 @@ class Cli < Clim
         elsif args.title.to_s.empty?
           puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to print!"
         else
-          count = 0
+          puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s) == 1
+          exit
+        end
+      end
+    end
 
-          Globals.notes_array.tap &.each do |note|
-            begin
-              puts <<-NOTE
-              #{"NOTE TITLE:".colorize(:yellow)} #{args.title.to_s}
+    # Subcommand to delete specified note.
+    sub "del" do
+      desc "Delete specified note"
+      usage "notor del [title]"
+      help short: "-h"
 
-              #{note[args.title.to_s]}
-              NOTE
+      argument "title",
+        desc: "Title of the note to delete",
+        type: String
 
-              count += 1
-            rescue KeyError
-              next
-            end
-          end
-
-          if count == 0
+      run do |opts, args|
+        if !args.unknown_args.empty?
+          puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
+        elsif args.title.to_s.empty?
+          puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to delete!"
+        else
+          if delete_note(args.title.to_s) == 1
             puts "Note \"#{args.title.to_s}\" not found."
+          else
+            puts "Note \"#{args.title.to_s}\" deleted."
           end
+          exit
         end
       end
     end
@@ -142,6 +153,7 @@ class Cli < Clim
     sub "reset" do
       desc "Delete all notes"
       usage "notor reset"
+      help short: "-h"
 
       run do
         reset_notes
@@ -154,6 +166,7 @@ class Cli < Clim
     sub "num" do
       desc "Display number of notes present"
       usage "notor num"
+      help short: "-h"
 
       run do
         puts "#{Globals.notes_array.size} notes present."
