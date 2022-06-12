@@ -37,8 +37,6 @@ def pull_notes
 
   # Block to check if the json file storing the notes exists, and create it in proper format if it does not.
   unless File.exists?(Globals.notes_file)
-    json_file = File.new(Globals.notes_file, "w")
-
     initialization_string = JSON.build do |json|
       json.object do
         json.field "note_number", Globals.notes_array.size
@@ -49,8 +47,8 @@ def pull_notes
       end
     end
 
+    json_file = File.new(Globals.notes_file, "w")
     json_file.puts initialization_string
-
     json_file.close
   end
 

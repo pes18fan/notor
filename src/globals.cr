@@ -10,15 +10,15 @@ class Globals
     @@version
   end
 
-  def self.notes_array
-    @@notes_array
-  end
-
   def self.files_dir
     @@files_dir
   end
 
   def self.notes_file
     @@notes_file
+  end
+
+  def self.notes_array
+    @@notes_array
   end
 end
