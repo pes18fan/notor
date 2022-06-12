@@ -15,7 +15,6 @@ release:
 	@echo "Finished compiling! Run `sudo make install` to install!"
 
 install:
-	@mkdir $(HOME)/.notor
 	@mv $(RELEASE) $(INSTALL)
 	@echo "Successfully installed!"
 
