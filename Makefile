@@ -12,7 +12,7 @@ clean:
 release:
 	@echo "Compiling..."
 	@crystal build --release src/main.cr -o $(RELEASE)
-	@echo "Finished compiling! Run `sudo make install` to install!"
+	@echo "Finished compiling! Run 'sudo make install' to install!"
 
 install:
 	@mv $(RELEASE) $(INSTALL)
