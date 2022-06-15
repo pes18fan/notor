@@ -112,10 +112,10 @@ class Cli < Clim
         type: String
 
       run do |opts, args|
-        if !args.unknown_args.empty?
+	if args.title.to_s.empty?
+	  puts opts.help_string
+        elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
-        elsif args.title.to_s.empty?
-          puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to print!"
         else
           puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s) == 1
           exit
@@ -134,10 +134,10 @@ class Cli < Clim
         type: String
 
       run do |opts, args|
-        if !args.unknown_args.empty?
+        if args.title.to_s.empty?
+	  puts opts.help_string
+        elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
-        elsif args.title.to_s.empty?
-          puts "#{"ERROR:".colorize(:red)} Please specify the title of the note to delete!"
         else
           if delete_note(args.title.to_s) == 1
             puts "Note \"#{args.title.to_s}\" not found."
@@ -174,6 +174,7 @@ class Cli < Clim
       end
     end
 
+    # Block that runs if no args are specified.
     run do |opts, args|
       puts opts.help_string
     end
