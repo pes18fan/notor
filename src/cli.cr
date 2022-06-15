@@ -149,6 +149,18 @@ class Cli < Clim
       end
     end
 
+    # Subcommand to list titles of all notes.
+    sub "list" do
+      desc "List the titles of all notes"
+      usage "notor list"
+      help short: "-h"
+
+      run do
+	list_notes
+	exit
+      end
+    end
+
     # Subcommand to delete all notes.
     sub "reset" do
       desc "Delete all notes"

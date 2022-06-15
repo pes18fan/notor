@@ -136,3 +136,16 @@ def delete_note(title : String) : Int32
   notes_to_json
   return 0
 end
+
+# Function to list all notes.
+def list_notes
+  count = 1
+  puts "#{"All notes:".colorize(:yellow)}\n"
+
+  Globals.notes_array.tap &.each do |note|
+    note.tap &.each do |title, content|
+      puts "\t#{count}.\t#{title}"
+      count += 1
+    end
+  end
+end
