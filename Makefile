@@ -10,6 +10,7 @@ all: debug
 .PHONY: debug
 debug: ./src/**
 	@mkdir -p bin/debug/ || true
+	@echo "Compiling..."
 	@crystal build src/main.cr -o $(TARGET)
 	@echo "Successfully compiled!"
 

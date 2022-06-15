@@ -156,8 +156,8 @@ class Cli < Clim
       help short: "-h"
 
       run do
-	list_notes
-	exit
+	      list_notes
+	      exit
       end
     end
 

@@ -139,6 +139,11 @@ end
 
 # Function to list all notes.
 def list_notes
+  if Globals.notes_array.size == 0
+    puts "No notes to list."
+    return
+  end
+
   count = 1
   puts "#{"All notes:".colorize(:yellow)}\n"
 
