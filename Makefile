@@ -20,7 +20,7 @@ clean:
 	@echo "Binaries cleaned."
 
 .PHONY: release
-release:
+release: ./src/**
 	@mkdir -p bin/release/ || true
 	@echo "Compiling..."
 	@crystal build --release src/main.cr -o $(RELEASE)
