@@ -27,7 +27,7 @@ By default, the binary will install to the path `/usr/local/bin`. To change that
 
 ## Uninstalling
 
-If you installed the app using `make`, an uninstall script named `uninstall.sh` is created automatically. You can simply run that script to uninstall notor, or run `sudo make uninstall` in the source directory, both will do the same thing
+If you installed the app using `make`, an uninstall script named `uninstall.sh` is created automatically. You can simply run that script to uninstall notor, or run `sudo make uninstall` in the source directory, both will do the same thing.
 
 If you do not have the uninstall script, possibly due to installation without `make`, you can remove the binary named `notor` directly from the install path, and remove the hidden folder `.notor` in the home directory if you want to delete your notes as well.
 
