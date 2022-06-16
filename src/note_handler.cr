@@ -90,11 +90,11 @@ def edit_note(title : String, editor : String = "") : Int32
 
     temp_file.close
 
-    if !Globals.text_editor.empty?
+    unless Globals.text_editor.empty?
       used_text_editor = Globals.text_editor
       system("#{Globals.text_editor} #{Globals.temp_file}")
     else
-      if !editor.empty?
+      unless editor.empty?
         used_text_editor = editor
         system("#{editor} #{Globals.temp_file}")
       else
