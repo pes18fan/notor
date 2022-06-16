@@ -18,13 +18,18 @@ Go into the directory and build and install as follows.
 
 ```bash
 cd notor
-mkdir -p bin/release/
 shards install
 make release
 sudo make install
 ```
 
 By default, the binary will install to the path `/usr/local/bin`. To change that, change the final `sudo make install` command to `sudo make INSTALL=<path> install` where you replace `<path>` with the install path of your choice.
+
+## Uninstalling
+
+If you installed the app using `make`, an uninstall scriptnamed `uninstall.sh` is created automatically. You can simply run that script to uninstall notor, or run `sudo make uninstall` in the source directory, both will do the same thing
+
+If you do not have the uninstall script, possibly due to installation without `make`, you can remove the binary named `notor` directly from the install path, and remove the hidden folder `.notor` in the home directory if you want to delete your notes as well.
 
 ## Usage
 
@@ -34,16 +39,6 @@ You can run `notor --help` to get a guide to the basic usage for the app. While 
 - `cat`: Takes the title of an existing note as an argument and displays it's content.
 - `del`: Takes the title of an existing note as an argument and deletes the note.
 - `list`: Lists the notes currently existing.
-
-## Uninstalling
-
-Go into the source directory that you cloned from GitHub while installing the app, and run the given command:
-
-```bash
-sudo make uninstall
-```
-
-If the source directory does not exist anymore, you can remove the binary named `notor` directly from the install path, and remove the hidden folder `.notor` in the home directory if you want to delete your notes as well.
 
 ## Contributing
 
