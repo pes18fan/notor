@@ -83,7 +83,7 @@ def edit_note(title : String, editor : String = "") : Int32
     temp_file = File.new(Globals.temp_file, "w")
 
     note.tap &.each do |title, content|
-      temp_file.puts "# DO NOT REMOVE THIS LINE. Edit the content of the note below. The first line below is the title and the lines afterward include the content."
+      temp_file.puts "# DO NOT REMOVE THIS LINE. Edit the note below. The first line below is the title and the lines afterward include the content."
       temp_file.puts title
       temp_file.puts content
     end
