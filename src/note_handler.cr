@@ -70,6 +70,75 @@ def write_note(note : Note)
   notes_to_json
 end
 
+# Function to edit an existing note.
+# Returns 0 on succesful edit, 1 on failure, and 2 if specifed note does not exist.
+def edit_note(title : String, editor : String = "") : Int32
+  used_text_editor = uninitialized String
+
+  Globals.notes_array.tap &.each do |note|
+    note[title]
+  rescue KeyError
+    next
+  else
+    temp_file = File.new(Globals.temp_file, "w")
+
+    note.tap &.each do |title, content|
+      temp_file.puts "# Edit the content of the note below. The first line below is the title and the lines afterward include the content. DO NOT EDIT THIS LINE."
+      temp_file.puts title
+      temp_file.puts content
+    end
+
+    temp_file.close
+
+    if !Globals.text_editor.empty?
+      used_text_editor = Globals.text_editor
+      system("#{Globals.text_editor} #{Globals.temp_file}")
+    else
+      if !editor.empty?
+        used_text_editor = editor
+        system("#{editor} #{Globals.temp_file}")
+      else
+        used_text_editor = "vi"
+        puts "No default editor detected and no editor specified. Using vi, press enter to continue."
+        gets
+
+        system("vi #{Globals.temp_file}")
+      end
+    end
+  end
+
+  file_content = File.read_lines(Globals.temp_file)
+  file_content.delete file_content[0]
+
+  if file_content[0].empty? || file_content[1..].empty?
+    puts "#{"ERROR:".colorize(:red)} Cannot create a note with empty title or content! Aborting edit."
+    return 1
+  elsif file_content[0].includes?("\n")
+    puts "#{"ERROR:".colorize(:red)} Note title cannot contain newlines! Aborting edit."
+    return 1
+  end
+
+  count = 0
+
+  Globals.notes_array.tap &.each do |note|
+    note[title]
+    count += 1
+  rescue KeyError
+    next
+  else
+    note[file_content[0]] = note.delete(title).to_s
+    note[file_content[0]] = file_content[1..].join("\n")
+  end
+
+  return 2 if count == 0
+
+  File.delete(Globals.temp_file)
+
+  notes_to_json
+
+  return 0
+end
+
 # Function to delete all notes.
 def reset_notes
   Globals.notes_array.clear
@@ -95,20 +164,18 @@ def cat(title : String) : Int32
   count = 0
 
   Globals.notes_array.tap &.each do |note|
-    begin
-      puts <<-NOTE
+    puts <<-NOTE
               #{"NOTE TITLE:".colorize(:yellow)} #{title}
 
               #{note[title]}
               NOTE
 
-      count += 1
-    rescue KeyError
-      next
-    end
+    count += 1
+  rescue KeyError
+    next
   end
 
-  if count == 0 
+  if count == 0
     return 1
   end
 
@@ -134,6 +201,7 @@ def delete_note(title : String) : Int32
   end
 
   notes_to_json
+
   return 0
 end
 
@@ -145,7 +213,8 @@ def list_notes
   end
 
   count = 1
-  puts "#{"All notes:".colorize(:yellow)}\n"
+  puts "#{Globals.notes_array.size} notes present."
+  puts "#{"All notes:".colorize(:yellow)}"
 
   Globals.notes_array.tap &.each do |note|
     note.tap &.each do |title, content|

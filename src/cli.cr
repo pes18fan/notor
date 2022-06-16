@@ -93,6 +93,8 @@ class Cli < Clim
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! If the title or content is composed of multiple words, please enter them in double quotes."
         elsif args.title.to_s.empty? || args.content.to_s.empty?
           puts "#{"ERROR:".colorize(:red)} Please specify non-empty title and content!"
+        elsif args.title.to_s.includes?("\n")
+          puts "#{"ERROR:".colorize(:red)} Title cannot contain newlines!"
         else
           write_note(Note.new(args.title.to_s, args.content.to_s))
           puts "New note #{args.title.to_s} created!"
@@ -112,13 +114,45 @@ class Cli < Clim
         type: String
 
       run do |opts, args|
-	if args.title.to_s.empty?
-	  puts opts.help_string
+        if args.title.to_s.empty?
+          puts opts.help_string
         elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
         else
           puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s) == 1
           exit
+        end
+      end
+    end
+
+    # Subcommand to edit specified note.
+    sub "edit" do
+      desc "Edit specified note"
+      usage "notor edit [title]"
+      help short: "-h"
+
+      argument "title",
+        desc: "Title of the note to delete",
+        type: String
+
+      argument "editor",
+        desc: "Editor to use to edit the note",
+        type: String
+
+      run do |opts, args|
+        if args.title.to_s.empty?
+          puts opts.help_string
+        elsif !args.unknown_args.empty?
+          puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
+        else
+          case edit_note(args.title.to_s, args.editor.to_s)
+          when 0
+            puts "Note \"#{args.title.to_s}\" successfully edited."
+          when 1
+            puts "Failed to edit \"#{args.title.to_s}\"."
+          when 2
+            puts "Note \"#{args.title.to_s}\" not found."
+          end
         end
       end
     end
@@ -135,7 +169,7 @@ class Cli < Clim
 
       run do |opts, args|
         if args.title.to_s.empty?
-	  puts opts.help_string
+          puts opts.help_string
         elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
         else
@@ -156,8 +190,8 @@ class Cli < Clim
       help short: "-h"
 
       run do
-	      list_notes
-	      exit
+        list_notes
+        exit
       end
     end
 
@@ -170,18 +204,6 @@ class Cli < Clim
       run do
         reset_notes
         puts "All notes deleted."
-        exit
-      end
-    end
-
-    # Subcommand to print the number of notes to stdout.
-    sub "num" do
-      desc "Display number of notes present"
-      usage "notor num"
-      help short: "-h"
-
-      run do
-        puts "#{Globals.notes_array.size} notes present."
         exit
       end
     end
