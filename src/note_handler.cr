@@ -10,8 +10,8 @@ def notes_to_json
       json.field "note_number", Globals.notes_array.size
       json.field "notes" do
         json.array do
-          Globals.notes_array.tap &.each do |i|
-            i.tap &.each do |title, content|
+          Globals.notes_array.tap &.each do |note|
+            note.tap &.each do |title, content|
               json.object do
                 json.field title, content
               end
@@ -83,7 +83,7 @@ def edit_note(title : String, editor : String = "") : Int32
     temp_file = File.new(Globals.temp_file, "w")
 
     note.tap &.each do |title, content|
-      temp_file.puts "# Edit the content of the note below. The first line below is the title and the lines afterward include the content. DO NOT EDIT THIS LINE."
+      temp_file.puts "# DO NOT REMOVE THIS LINE. Edit the content of the note below. The first line below is the title and the lines afterward include the content."
       temp_file.puts title
       temp_file.puts content
     end
@@ -112,9 +112,6 @@ def edit_note(title : String, editor : String = "") : Int32
 
   if file_content[0].empty? || file_content[1..].empty?
     puts "#{"ERROR:".colorize(:red)} Cannot create a note with empty title or content! Aborting edit."
-    return 1
-  elsif file_content[0].includes?("\n")
-    puts "#{"ERROR:".colorize(:red)} Note title cannot contain newlines! Aborting edit."
     return 1
   end
 
@@ -196,9 +193,7 @@ def delete_note(title : String) : Int32
     Globals.notes_array.delete note
   end
 
-  if count == 0
-    return 1
-  end
+  return 1 if count == 0
 
   notes_to_json
 

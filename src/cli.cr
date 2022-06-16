@@ -128,7 +128,7 @@ class Cli < Clim
     # Subcommand to edit specified note.
     sub "edit" do
       desc "Edit specified note"
-      usage "notor edit [title]"
+      usage "notor edit [title] [editor]"
       help short: "-h"
 
       argument "title",
@@ -136,7 +136,7 @@ class Cli < Clim
         type: String
 
       argument "editor",
-        desc: "Editor to use to edit the note",
+        desc: "Editor to use to edit the note, optional",
         type: String
 
       run do |opts, args|
