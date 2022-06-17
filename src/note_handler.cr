@@ -96,18 +96,18 @@ def edit_note(title : String, editor : String = "") : Int32
       used_text_editor = editor
     else
       unless Config.editor.empty?
-	used_text_editor = Config.editor
+        used_text_editor = Config.editor
       else
-	unless Globals.default_editor.empty?
-	  used_text_editor = Globals.default_editor
-	else
-	  used_text_editor = "vi"
-	  puts "No default editor detected and no editor specified. Using vi, press enter to continue."
+        unless Globals.default_editor.empty?
+          used_text_editor = Globals.default_editor
+        else
+          used_text_editor = "vi"
+          puts "No default editor detected and no editor specified. Using vi, press enter to continue."
           gets
-	end
+        end
       end
     end
-    
+
     system("#{used_text_editor} #{Globals.temp_file}")
   end
 
@@ -116,6 +116,7 @@ def edit_note(title : String, editor : String = "") : Int32
 
   if file_content[0].empty? || file_content[1..].empty?
     puts "#{"ERROR:".colorize(:red)} Cannot create a note with empty title or content! Aborting edit."
+    File.delete(Globals.temp_file)
     return 1
   end
 
@@ -176,20 +177,20 @@ def cat(title : String, use_pager : Bool) : Int32
 
     #{note[title]}
     NOTE
-    
+
     if use_pager
       unless Config.pager.empty?
-	system("echo \"#{printed_content}\" | #{Config.pager}")
+        system("echo \"#{printed_content}\" | #{Config.pager}")
       else
-	unless Globals.default_pager.empty?
-	  system("echo \"#{printed_content}\" | #{Globals.default_pager}")
-	else
-	  system("echo \"#{printed_content}\" | more")
-	end
+        unless Globals.default_pager.empty?
+          system("echo \"#{printed_content}\" | #{Globals.default_pager}")
+        else
+          system("echo \"#{printed_content}\" | more")
+        end
       end
     else
       puts printed_content
-    end   
+    end
   end
 
   if count == 0

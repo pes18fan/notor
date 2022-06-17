@@ -42,8 +42,8 @@ class Config
   def self.save
     config = JSON.build do |json|
       json.object do
-	json.field "editor", @@editor
-	json.field "pager", @@pager
+        json.field "editor", @@editor
+        json.field "pager", @@pager
       end
     end
 

@@ -111,8 +111,8 @@ class Cli < Clim
       help short: "-h"
 
       option "-p", "--pager",
-	type: Bool, 
-	desc: "Use pager."
+        type: Bool,
+        desc: "Use pager."
 
       argument "title",
         desc: "The title of the note to print",
@@ -124,7 +124,7 @@ class Cli < Clim
         elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
         else
-	  puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s, opts.pager) == 1
+          puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s, opts.pager) == 1
           exit
         end
       end
@@ -220,53 +220,53 @@ class Cli < Clim
       help short: "-h"
 
       sub "editor" do
-	desc "Change default editor for editing notes"
-	usage "notor conf editor [editor]"
-	help short: "-h"
+        desc "Change default editor for editing notes"
+        usage "notor conf editor [editor]"
+        help short: "-h"
 
-	argument "editor",
-	  desc: "Editor used to edit notes",
-	  type: String
+        argument "editor",
+          desc: "Editor used to edit notes",
+          type: String
 
-	run do |opts, args|
-	  if args.all_args.empty?
-	    puts opts.help_string
-	  else
-	    Config.conf_editor(args.editor.to_s)
-	  end
-	end
+        run do |opts, args|
+          if args.all_args.empty?
+            puts opts.help_string
+          else
+            Config.conf_editor(args.editor.to_s)
+          end
+        end
       end
 
       sub "pager" do
-	desc "Set default pager for viewing notes"
-	usage "notor conf pager [pager]"
-	help short: "-h"
+        desc "Set default pager for viewing notes"
+        usage "notor conf pager [pager]"
+        help short: "-h"
 
-	argument "pager",
-	  desc: "Pager used to view notes",
-	  type: String
+        argument "pager",
+          desc: "Pager used to view notes",
+          type: String
 
-	run do |opts, args|
-	  if args.all_args.empty?
-	    puts opts.help_string
-	  else
-	    Config.conf_pager(args.pager.to_s)
-	  end
-	end
+        run do |opts, args|
+          if args.all_args.empty?
+            puts opts.help_string
+          else
+            Config.conf_pager(args.pager.to_s)
+          end
+        end
       end
 
       sub "show" do
-	desc "Show configuration info"
-	usage "notor conf show"
-	help short: "-h"
+        desc "Show configuration info"
+        usage "notor conf show"
+        help short: "-h"
 
-	run do
-	  Config.show
-	end
+        run do
+          Config.show
+        end
       end
 
       run do |opts, args|
-	puts opts.help_string
+        puts opts.help_string
       end
     end
 
