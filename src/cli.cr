@@ -1,5 +1,6 @@
 require "./notes"
 require "./globals"
+require "./config"
 require "./note_handler"
 require "colorize"
 require "clim"
@@ -205,6 +206,53 @@ class Cli < Clim
         reset_notes
         puts "All notes deleted."
         exit
+      end
+    end
+
+    # Subcommand to configure notor's settings
+    sub "conf" do
+      desc "Configure notor settings"
+      usage "notor conf [subcommand] [arguments]"
+      help short: "-h"
+
+      sub "editor" do
+	desc "Change default editor for editing notes"
+	usage "notor conf editor [editor]"
+	help short: "-h"
+
+	argument "editor",
+	  desc: "Editor used to edit notes",
+	  type: String
+
+	run do |opts, args|
+	  if args.all_args.empty?
+	    puts opts.help_string
+	  else
+	    Config.conf_editor(args.editor.to_s)
+	  end
+	end
+      end
+
+      sub "pager" do
+	desc "Set default pager for viewing notes"
+	usage "notor conf pager [pager]"
+	help short: "-h"
+
+	argument "pager",
+	  desc: "Pager used to view notes",
+	  type: String
+
+	run do |opts, args|
+	  if args.all_args.empty?
+	    puts opts.help_string
+	  else
+	    Config.conf_pager(args.pager.to_s)
+	  end
+	end
+      end
+
+      run do |opts, args|
+	puts opts.help_string
       end
     end
 
