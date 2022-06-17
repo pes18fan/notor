@@ -6,6 +6,9 @@ class Globals
   # User's default text editor.
   @@text_editor : String = `echo $EDITOR`.chomp
 
+  # User's default pager.
+  @@default_pager : String = `echo $PAGER`.chomp
+
   # Path to directory where notor stores data.
   @@files_dir : String = `echo $HOME/.notor`.chomp
 
@@ -24,6 +27,10 @@ class Globals
 
   def self.text_editor
     @@text_editor
+  end
+
+  def self.default_pager
+    @@default_pager
   end
 
   def self.files_dir

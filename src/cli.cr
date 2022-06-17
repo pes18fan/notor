@@ -107,8 +107,12 @@ class Cli < Clim
     # Subcommand to print the specified note to stdout.
     sub "cat" do
       desc "Display the contents of the specified note"
-      usage "notor cat [title]"
+      usage "notor cat [flags] [title]"
       help short: "-h"
+
+      option "-p", "--pager",
+	type: Bool, 
+	desc: "Use pager."
 
       argument "title",
         desc: "The title of the note to print",
@@ -120,7 +124,7 @@ class Cli < Clim
         elsif !args.unknown_args.empty?
           puts "#{"ERROR:".colorize(:red)} Unknown arguments found! Please enter only the title, and if it's composed of multiple words place it in double quotes."
         else
-          puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s) == 1
+	  puts "Note \"#{args.title.to_s}\" not found." if cat(args.title.to_s, opts.pager) == 1
           exit
         end
       end
@@ -248,6 +252,16 @@ class Cli < Clim
 	  else
 	    Config.conf_pager(args.pager.to_s)
 	  end
+	end
+      end
+
+      sub "show" do
+	desc "Show configuration info"
+	usage "notor conf show"
+	help short: "-h"
+
+	run do
+	  Config.show
 	end
       end
 

@@ -157,19 +157,35 @@ end
 
 # Function to print the specified note to stdout.
 # Returns 0 if note was successfully printed out, 1 on failure.
-def cat(title : String) : Int32
+def cat(title : String, use_pager : Bool) : Int32
   count = 0
 
   Globals.notes_array.tap &.each do |note|
-    puts <<-NOTE
-              #{"NOTE TITLE:".colorize(:yellow)} #{title}
-
-              #{note[title]}
-              NOTE
+    note[title]
 
     count += 1
   rescue KeyError
     next
+  else
+    printed_content = <<-NOTE
+    #{use_pager ? "NOTE TITLE:" : "NOTE TITLE:".colorize(:yellow)} #{title}
+
+    #{note[title]}
+    NOTE
+    
+    if use_pager
+      unless Config.pager.empty?
+	system("echo \"#{printed_content}\" | #{Config.pager}")
+      else
+	unless Globals.default_pager.empty?
+	  system("echo \"#{printed_content}\" | #{Globals.default_pager}")
+	else
+	  system("echo \"#{printed_content}\" | more")
+	end
+      end
+    else
+      puts printed_content
+    end   
   end
 
   if count == 0

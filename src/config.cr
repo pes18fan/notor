@@ -1,4 +1,5 @@
 require "json"
+require "colorize"
 
 # Class that holds global variables that can be configured by the user.
 class Config
@@ -23,6 +24,7 @@ class Config
     Config.save
   end
 
+  # Pulls configuration info from the a config file if it exists.
   def self.pull
     unless File.exists?(@@file)
       return
@@ -48,5 +50,22 @@ class Config
     config_file = File.open(@@file, "w")
     config_file.puts config
     config_file.close
+  end
+
+  # Prints configuration info to stdout.
+  def self.show
+    puts <<-CONFIG
+    #{"CONFIGURATION:".colorize(:yellow)}
+    \tEditor: #{@@editor}
+    \tPager: #{@@pager}
+    CONFIG
+  end
+
+  def self.editor
+    @@editor
+  end
+
+  def self.pager
+    @@pager
   end
 end
