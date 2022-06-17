@@ -14,13 +14,13 @@ class Config
 
   # Sets default editor to use for editing notes.
   def self.conf_editor(editor : String)
-    @@editor = editor
+    @@editor += editor
     Config.save
   end
 
   # Sets default pager to use for showing notes.
   def self.conf_pager(pager : String)
-    @@pager = pager
+    @@pager += pager
     Config.save
   end
 

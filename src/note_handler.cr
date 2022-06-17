@@ -90,21 +90,25 @@ def edit_note(title : String, editor : String = "") : Int32
 
     temp_file.close
 
-    unless Globals.text_editor.empty?
-      used_text_editor = Globals.text_editor
-      system("#{Globals.text_editor} #{Globals.temp_file}")
+    # This nested mess decides what editor is used for editing the note.
+    # It first checks the args for the editor, if no editor was specified it checks configuration for the editor, if that is also unset it then checks the default text editor, and if that is also empty it finally falls back to vi.
+    unless editor.empty?
+      used_text_editor = editor
     else
-      unless editor.empty?
-        used_text_editor = editor
-        system("#{editor} #{Globals.temp_file}")
+      unless Config.editor.empty?
+	used_text_editor = Config.editor
       else
-        used_text_editor = "vi"
-        puts "No default editor detected and no editor specified. Using vi, press enter to continue."
-        gets
-
-        system("vi #{Globals.temp_file}")
+	unless Globals.default_editor.empty?
+	  used_text_editor = Globals.default_editor
+	else
+	  used_text_editor = "vi"
+	  puts "No default editor detected and no editor specified. Using vi, press enter to continue."
+          gets
+	end
       end
     end
+    
+    system("#{used_text_editor} #{Globals.temp_file}")
   end
 
   file_content = File.read_lines(Globals.temp_file)

@@ -4,7 +4,7 @@ class Globals
   @@version : String = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
   # User's default text editor.
-  @@text_editor : String = `echo $EDITOR`.chomp
+  @@default_editor : String = `echo $EDITOR`.chomp
 
   # User's default pager.
   @@default_pager : String = `echo $PAGER`.chomp
@@ -25,8 +25,8 @@ class Globals
     @@version
   end
 
-  def self.text_editor
-    @@text_editor
+  def self.default_editor
+    @@default_editor
   end
 
   def self.default_pager
