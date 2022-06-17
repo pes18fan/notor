@@ -4,10 +4,6 @@ class Note
   # Includes a single key-value pair where the key is the title of the note instance and the value is the content.
   property note_data = {} of String => String
 
-  def self.note_data
-    @note_data
-  end
-
   def initialize(title : String, content : String)
     @title = title
     @content = content
