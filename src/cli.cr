@@ -213,12 +213,13 @@ class Cli < Clim
       end
     end
 
-    # Subcommand to configure notor's settings
+    # Subcommand to configure notor's settings.
     sub "conf" do
       desc "Configure notor settings"
       usage "notor conf [subcommand] [arguments]"
       help short: "-h"
 
+      # Modify the editor configuration.
       sub "editor" do
         desc "Change default editor for editing notes"
         usage "notor conf editor [editor]"
@@ -237,6 +238,7 @@ class Cli < Clim
         end
       end
 
+      # Modify the pager configuration.
       sub "pager" do
         desc "Set default pager for viewing notes"
         usage "notor conf pager [pager]"
@@ -255,6 +257,7 @@ class Cli < Clim
         end
       end
 
+      # Print out the configuration info to stdout.
       sub "show" do
         desc "Show configuration info"
         usage "notor conf show"

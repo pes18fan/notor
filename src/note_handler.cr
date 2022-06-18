@@ -193,9 +193,7 @@ def cat(title : String, use_pager : Bool) : Int32
     end
   end
 
-  if count == 0
-    return 1
-  end
+  return 1 if count == 0
 
   return 0
 end
