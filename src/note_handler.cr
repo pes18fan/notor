@@ -185,7 +185,7 @@ def cat(title : String, use_pager : Bool) : Int32
         unless Globals.default_pager.empty?
           system("echo \"#{printed_content}\" | #{Globals.default_pager}")
         else
-          system("echo \"#{printed_content}\" | more")
+          system("echo \"#{printed_content}\" | less")
         end
       end
     else

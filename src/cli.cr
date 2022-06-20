@@ -234,6 +234,7 @@ class Cli < Clim
             puts opts.help_string
           else
             Config.conf_editor(args.editor.to_s)
+            puts "#{args.editor.to_s} set as default editor for notor."
           end
         end
       end
@@ -253,13 +254,14 @@ class Cli < Clim
             puts opts.help_string
           else
             Config.conf_pager(args.pager.to_s)
+            puts "#{args.pager.to_s} set as default pager for notor."
           end
         end
       end
 
       # Print out the configuration info to stdout.
       sub "show" do
-        desc "Show configuration info"
+        desc "Show configuration info, default if no args provided"
         usage "notor conf show"
         help short: "-h"
 
@@ -269,7 +271,17 @@ class Cli < Clim
       end
 
       run do |opts, args|
-        puts opts.help_string
+        Config.show
+      end
+
+      sub "reset" do
+        desc "Reset configuration"
+        usage "notor conf reset"
+        help short: "-h"
+
+        run do
+          Config.reset
+        end
       end
     end
 

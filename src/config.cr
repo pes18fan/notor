@@ -14,13 +14,13 @@ class Config
 
   # Sets default editor to use for editing notes.
   def self.conf_editor(editor : String)
-    @@editor += editor
+    @@editor = editor
     Config.save
   end
 
   # Sets default pager to use for showing notes.
   def self.conf_pager(pager : String)
-    @@pager += pager
+    @@pager = pager
     Config.save
   end
 
@@ -56,9 +56,17 @@ class Config
   def self.show
     puts <<-CONFIG
     #{"CONFIGURATION:".colorize(:yellow)}
-    \tEditor: #{@@editor}
-    \tPager: #{@@pager}
+    \tEditor: #{@@editor.empty? ? "none" : @@editor}
+    \tPager: #{@@pager.empty? ? "none" : @@pager}
     CONFIG
+  end
+
+  # Resets the configuration settings.
+  def self.reset
+    @@editor = ""
+    @@pager = ""
+
+    Config.save
   end
 
   def self.editor
