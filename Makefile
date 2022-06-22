@@ -35,7 +35,7 @@ install:
 	@echo 'while true; do' >> uninstall.sh
 	@echo 'read -p "Do you want to delete the notes and config files too? [y/n]: " yn;' >> uninstall.sh
 	@echo 'case $$yn in' >> uninstall.sh
-	@echo '[Yy]*) $(RM) -r $(DATA_FOLDER); break;;' >> uninstall.sh
+	@echo '[Yy]*) rm -rf $(DATA_FOLDER); break;;' >> uninstall.sh
 	@echo '[Nn]*) break;;' >> uninstall.sh
 	@echo '*) echo "Please enter y(yes) or n(no)!"' >> uninstall.sh
 	@echo 'esac' >> uninstall.sh
