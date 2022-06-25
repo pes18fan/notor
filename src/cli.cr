@@ -1,4 +1,3 @@
-require "./notes"
 require "./globals"
 require "./config"
 require "./note_handler"

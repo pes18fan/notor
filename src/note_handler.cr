@@ -1,5 +1,4 @@
 require "json"
-require "./notes"
 
 # This file defines functions for various actions done on the notes, like adding new ones or deleting existing ones.
 
