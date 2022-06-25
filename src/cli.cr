@@ -97,9 +97,12 @@ class Cli < Clim
         elsif args.title.to_s.includes?("\n")
           puts "#{"ERROR:".colorize(:red)} Title cannot contain newlines!"
         else
-          write_note(Note.new(args.title.to_s, args.content.to_s))
-          puts "New note #{args.title.to_s} created!"
-          exit
+          case write_note(args.title.to_s, args.content.to_s)
+          when 0
+            puts "New note #{args.title.to_s} created!"
+          when 1
+            puts "Note named #{args.title.to_s} already exists!"
+          end
         end
       end
     end

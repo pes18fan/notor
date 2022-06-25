@@ -64,10 +64,23 @@ def pull_notes
 end
 
 # Function to push the note passed to the app to the global notes array.
-def write_note(note : Note)
-  Globals.notes_array << note.note_data
+# Returns 0 on success, 1 if note already exists.
+def write_note(title : String, content : String) : Int32
+  Globals.notes_array.tap &.each do |i|
+    i[title]
+  rescue KeyError
+    next
+  else
+    return 1
+  end
+
+  note = {} of String => String
+  note[title] = content
+  
+  Globals.notes_array << note
 
   notes_to_json
+  return 0
 end
 
 # Function to edit an existing note.
