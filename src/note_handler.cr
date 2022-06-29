@@ -66,7 +66,7 @@ end
 # Returns 0 on success, 1 if note already exists.
 def write_note(title : String, content : String) : Int32
   Globals.notes_array.tap &.each do |i|
-    i[title]
+    _ = i[title]
   rescue KeyError
     next
   else
@@ -88,7 +88,7 @@ def edit_note(title : String, editor : String = "") : Int32
   used_text_editor = uninitialized String
 
   Globals.notes_array.tap &.each do |note|
-    note[title]
+    _ = note[title]
   rescue KeyError
     next
   else
@@ -135,7 +135,7 @@ def edit_note(title : String, editor : String = "") : Int32
   count = 0
 
   Globals.notes_array.tap &.each do |note|
-    note[title]
+    _ = note[title]
     count += 1
   rescue KeyError
     next
@@ -178,8 +178,7 @@ def cat(title : String, use_pager : Bool) : Int32
   count = 0
 
   Globals.notes_array.tap &.each do |note|
-    note[title]
-
+    _ = note[title]
     count += 1
   rescue KeyError
     next
@@ -216,7 +215,7 @@ def delete_note(title : String) : Int32
   count = 0
 
   Globals.notes_array.tap &.each do |note|
-    note[title]
+    _ = note[title]
     count += 1
   rescue KeyError
     next
