@@ -1,6 +1,6 @@
 # notor
 
-A simple terminal-based app that you can use to take and store short notes.
+A terminal app for taking notes.
 
 ## Installation
 
@@ -33,16 +33,16 @@ If you do not have the uninstall script, possibly due to installation without `m
 
 ## Usage
 
-You can run `notor --help` to get a guide to the basic usage for the app. While using notor, you generally run the executable along with some subcommand, optional flags and arguments. A few common subcommands that you'll find yourself using include:
+You can run `notor --help` to get a guide to the basic usage for the app. While using notor, you generally run the executable along with some subcommand, optional flags and arguments. The subcommands that you'll find yourself using include:
 
-- `new`: Takes the title and content of the note as arguments and creates a new note.
+- `new`: Creates a new note with the specified title and content.
 
 ```bash
 $ notor new foo bar # foo is the title and bar is the content
 $ notor new "foo bar" "baz thud" # use quotes if title and/or content have more than one word
 ```
 
-- `cat`: Takes the title of an existing note as an argument and displays it's content.
+- `cat`: Displays the content of the specified note.
 
 ```bash
 $ notor cat foo
@@ -51,7 +51,14 @@ NOTE TITLE: foo
 bar
 ```
 
-- `del`: Takes the title of an existing note as an argument and deletes the note.
+- `edit`: Opens the specified note for editing in the default text editor. Optionally, you can also specify the editor to use.
+
+```bash
+$ notor edit foo vim # opens foo in vim, where you can edit the title and content, then close the window to save changes.
+$ notor edit "foo bar" # opens "foo bar" in default editor
+```
+
+- `del`: Deletes the specified note..
 
 ```bash
 $ notor del foo
@@ -65,6 +72,26 @@ Note "thud" not found.
 $ notor list
 All notes:
     1.	foo bar
+```
+
+- `reset`: Deletes all notes.
+```bash
+$ notor reset
+All notes deleted.
+```
+
+## Configuration
+
+`notor` provides a few configuration options:
+
+- `editor`: Determines the default editor used in `notor edit` commands.
+- `pager`: Determines the pager used to display content when `notor cat` is invoked with the `-p` flag.
+
+These configuration options can be set to the user's liking using the `notor conf` subcommand. For example:
+
+```bash
+notor conf editor vim # sets vim as the default editor
+notor conf pager less # sets less as the default pager
 ```
 
 ## Contributing
