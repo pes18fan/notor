@@ -36,9 +36,36 @@ If you do not have the uninstall script, possibly due to installation without `m
 You can run `notor --help` to get a guide to the basic usage for the app. While using notor, you generally run the executable along with some subcommand, optional flags and arguments. A few common subcommands that you'll find yourself using include:
 
 - `new`: Takes the title and content of the note as arguments and creates a new note.
+
+```bash
+$ notor new foo bar # foo is the title and bar is the content
+$ notor new "foo bar" "baz thud" # use quotes if title and/or content have more than one word
+```
+
 - `cat`: Takes the title of an existing note as an argument and displays it's content.
+
+```bash
+$ notor cat foo
+NOTE TITLE: foo
+
+bar
+```
+
 - `del`: Takes the title of an existing note as an argument and deletes the note.
+
+```bash
+$ notor del foo
+Note "foo" deleted.
+$ notor del thud
+Note "thud" not found.
+```
+
 - `list`: Lists the notes currently existing.
+```bash
+$ notor list
+All notes:
+    1.	foo bar
+```
 
 ## Contributing
 
@@ -50,4 +77,4 @@ You can run `notor --help` to get a guide to the basic usage for the app. While 
 
 ## Contributors
 
-- [pes18fan](https://github.com/pes18fan141) - creator and maintainer
+- [pes18fan141](https://github.com/pes18fan141) - creator and maintainer
