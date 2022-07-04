@@ -90,8 +90,8 @@ All notes deleted.
 These configuration options can be set to the user's liking using the `notor conf` subcommand. For example:
 
 ```bash
-notor conf editor vim # sets vim as the default editor
-notor conf pager less # sets less as the default pager
+$ notor conf editor vim # sets vim as the default editor
+$ notor conf pager less # sets less as the default pager
 ```
 
 ## Contributing
