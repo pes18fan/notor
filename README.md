@@ -39,7 +39,9 @@ You can run `notor --help` to get a guide to the basic usage for the app. While 
 
 ```bash
 $ notor new foo bar # foo is the title and bar is the content
+New note foo created!
 $ notor new "foo bar" "baz thud" # use quotes if title and/or content have more than one word
+New note foo bar created!
 ```
 
 - `cat`: Displays the content of the specified note.
