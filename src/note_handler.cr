@@ -184,10 +184,24 @@ def cat(title : String, use_pager : Bool) : Int32
     next
   else
     printed_content = <<-NOTE
-    #{use_pager ? "NOTE TITLE:" : "NOTE TITLE:".colorize(:yellow)} #{title}
+    #{"NOTE TITLE:".colorize(:yellow)} #{title}
 
     #{note[title]}
     NOTE
+
+    if Config.paging == true
+      unless Config.pager.empty?
+        system("echo \"#{printed_content}\" | #{Config.pager}")
+      else
+        unless Globals.default_pager.empty?
+          system("echo \"#{printed_content}\" | #{Globals.default_pager}")
+        else
+          system("echo \"#{printed_content}\" | less")
+        end
+      end
+
+      return 0
+    end
 
     if use_pager
       unless Config.pager.empty?

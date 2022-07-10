@@ -7,10 +7,13 @@ class Config
   @@file : String = `echo #{Globals.files_dir}/config.json`.chomp
 
   # Default editor for editing notes.
-  @@editor : String = ""
+  @@editor = ""
 
   # Default pager for viewing notes.
-  @@pager : String = ""
+  @@pager = ""
+
+  # Determines whether the pager is always used for viewing notes. False by default.
+  @@paging = false
 
   # Sets default editor to use for editing notes.
   def self.conf_editor(editor : String)
@@ -21,6 +24,12 @@ class Config
   # Sets default pager to use for showing notes.
   def self.conf_pager(pager : String)
     @@pager = pager
+    Config.save
+  end
+
+  # 
+  def self.conf_paging(paging : Bool | Nil)
+    @@paging = paging
     Config.save
   end
 
@@ -36,6 +45,7 @@ class Config
 
     @@editor = config["editor"].as_s
     @@pager = config["pager"].as_s
+    @@paging = config["paging"].as_bool
   end
 
   # Saves configuration info to a json file.
@@ -44,6 +54,7 @@ class Config
       json.object do
         json.field "editor", @@editor
         json.field "pager", @@pager
+        json.field "paging", @@paging
       end
     end
 
@@ -56,8 +67,9 @@ class Config
   def self.show
     puts <<-CONFIG
     #{"CONFIGURATION:".colorize(:yellow)}
-    \tEditor: #{@@editor.empty? ? "none" : @@editor}
-    \tPager: #{@@pager.empty? ? "none" : @@pager}
+    \tDefault editor: #{@@editor.empty? ? "none" : @@editor}
+    \tDefault pager: #{@@pager.empty? ? "none" : @@pager}
+    \tPaging always used: #{@@paging.to_s}
     CONFIG
   end
 
@@ -65,6 +77,7 @@ class Config
   def self.reset
     @@editor = ""
     @@pager = ""
+    @@paging = false
 
     Config.save
   end
@@ -75,5 +88,9 @@ class Config
 
   def self.pager
     @@pager
+  end
+
+  def self.paging
+    @@paging
   end
 end

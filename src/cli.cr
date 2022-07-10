@@ -261,6 +261,25 @@ class Cli < Clim
         end
       end
 
+      sub "paging" do
+        desc "Set whether the pager is always used to display notes or not"
+        usage "notor conf pager [paging]"
+        help short: "-h"
+
+        argument "paging",
+          desc: "Whether paging is always used or not",
+          type: Bool
+
+        run do |opts, args|
+          if args.all_args.empty?
+            puts opts.help_string
+          elsif !args.paging.nil?
+            Config.conf_paging(args.paging)
+            puts "Paging preference set as #{args.paging}"
+          end
+        end
+      end
+
       # Print out the configuration info to stdout.
       sub "show" do
         desc "Show configuration info, default if no args provided"
