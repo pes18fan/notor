@@ -19,5 +19,5 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
         files: ./bin/notor
