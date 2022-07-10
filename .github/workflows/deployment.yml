@@ -1,0 +1,22 @@
+name: Deployment
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal:latest-alpine
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: shards install
+    - name: Build
+      run: shards build --production --static --release --no-debug
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./bin/notor
