@@ -15,9 +15,11 @@ jobs:
     - name: Install dependencies
       run: shards install
     - name: Build
-      run: shards build --production --static --release --no-debug
+      run: |
+        mkdir bin
+        crystal build src/main.cr --static --release --no-debug -o ./bin/notor_linux_x86_64
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        files: ./bin/notor
+        files: ./bin/notor_linux_x86_64
