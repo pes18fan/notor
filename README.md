@@ -71,7 +71,7 @@ $ notor del thud
 Note "thud" not found.
 ```
 
-- `list`: Lists the notes currently existing in a tabular form.
+- `list`: Lists the notes currently existing in a tabular form (kudos to [tablo](https://www.github.com/hutou/tablo/)).
 ```bash
 $ notor list
 2 notes present.
