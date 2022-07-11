@@ -302,6 +302,7 @@ class Cli < Clim
 
         run do
           Config.reset
+          puts "Configuration reset."
         end
       end
     end

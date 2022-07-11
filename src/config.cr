@@ -75,11 +75,7 @@ class Config
 
   # Resets the configuration settings.
   def self.reset
-    @@editor = ""
-    @@pager = ""
-    @@paging = false
-
-    Config.save
+    File.delete(@@file)
   end
 
   def self.editor
