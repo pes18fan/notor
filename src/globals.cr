@@ -1,4 +1,5 @@
 require "time"
+require "./note"
 
 # Class holding global variables.
 class Globals
@@ -21,7 +22,12 @@ class Globals
   @@temp_file : String = `echo #{@@files_dir}/temp.txt`.chomp
 
   # Array holding all the notes at runtime.
-  @@notes_array = [] of Hash(String, String)
+  @@notes_array = [] of Hash(String, (String | Int32))
+
+  # Utility function that takes a Time instance and returns it's equivalent unix timestamp.
+  def self.unix_stamp(time : Time) : Int32
+    return (time - Time::UNIX_EPOCH).total_seconds.round_even.to_i
+  end
 
   def self.version
     @@version
@@ -49,9 +55,5 @@ class Globals
 
   def self.notes_array
     @@notes_array
-  end
-
-  def unix_stamp(time : Time): Int32
-    return (time - Time::UNIX_STAMP).total_seconds.round_even.to_i
   end
 end

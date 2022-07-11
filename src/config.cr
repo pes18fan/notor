@@ -27,7 +27,7 @@ class Config
     Config.save
   end
 
-  # 
+  #
   def self.conf_paging(paging : Bool | Nil)
     @@paging = paging
     Config.save

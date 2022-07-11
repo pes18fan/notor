@@ -71,11 +71,17 @@ $ notor del thud
 Note "thud" not found.
 ```
 
-- `list`: Lists the notes currently existing.
+- `list`: Lists the notes currently existing in a tabular form.
 ```bash
 $ notor list
+2 notes present.
 All notes:
-    1.	foo bar
++------+--------------------------------+----------------+
+| S.N  | Created on                     | Title          |
++------+--------------------------------+----------------+
+| 1    | 2022/07/11 04:43:27 PM Mon     | foo            |
+| 2    | 2022/07/11 04:43:40 PM Mon     | foo bar        |
++------+--------------------------------+----------------+
 ```
 
 - `reset`: Deletes all notes.
@@ -90,12 +96,14 @@ All notes deleted.
 
 - `editor`: Determines the default editor used in `notor edit` commands.
 - `pager`: Determines the pager used to display content when `notor cat` is invoked with the `-p` flag.
+- `paging`: Determines if paging is always used to display content. `false` by default.
 
 These configuration options can be set to the user's liking using the `notor conf` subcommand. For example:
 
 ```bash
 $ notor conf editor vim # sets vim as the default editor
 $ notor conf pager less # sets less as the default pager
+$ notor conf paging true # always use the pager
 ```
 
 ## Contributing
