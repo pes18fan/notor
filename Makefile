@@ -23,7 +23,7 @@ clean:
 release: ./src/**
 	@mkdir -p bin/release/ || true
 	@echo "Compiling..."
-	@crystal build --release src/main.cr -o $(RELEASE)
+	@crystal build --release --no-debug src/main.cr -o $(RELEASE)
 	@echo "Finished compiling! Run 'sudo make install' to install."
 
 .PHONY: install
