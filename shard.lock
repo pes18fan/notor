@@ -4,3 +4,7 @@ shards:
     git: https://github.com/at-grandpa/clim.git
     version: 0.17.1
 
+  tablo:
+    git: https://github.com/hutou/tablo.git
+    version: 0.10.1
+

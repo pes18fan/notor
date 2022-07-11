@@ -12,6 +12,8 @@ dependencies:
   clim:
     github: at-grandpa/clim
     version: 0.17.1
+  tablo:
+    github: hutou/tablo
 
 crystal: 1.4.1
 
