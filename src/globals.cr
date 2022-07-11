@@ -1,3 +1,5 @@
+require "time"
+
 # Class holding global variables.
 class Globals
   # Application version.
@@ -47,5 +49,9 @@ class Globals
 
   def self.notes_array
     @@notes_array
+  end
+
+  def unix_stamp(time : Time): Int32
+    return (time - Time::UNIX_STAMP).total_seconds.round_even.to_i
   end
 end
