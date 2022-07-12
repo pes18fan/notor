@@ -14,7 +14,6 @@ def notes_to_json
           Globals.notes_array.tap &.each do |note|
             json.object do
               note.tap &.each do |k, v|
-                break if k == "created_on_unix_stamp"
                 json.field k, v
               end
             end
@@ -58,7 +57,7 @@ def pull_notes
     JSON.parse(file)
   end
 
-  notes = Array(Hash(String, (String | Int32))).from_json(notes_json["notes"].to_json)
+  notes = Array(Hash(String, String)).from_json(notes_json["notes"].to_json)
 
   notes.tap &.each do |note|
     Globals.notes_array << note
@@ -263,9 +262,9 @@ def list_notes
   puts "#{Globals.notes_array.size} notes present."
   puts "#{"All notes:".colorize(:yellow)}"
 
-  table =  Tablo::Table.new(data) do |t|
+  table = Tablo::Table.new(data) do |t|
     t.add_column("S.N", width: 4, align_header: Tablo::Justify::Left, align_body: Tablo::Justify::Left) { |n| n[0] }
-    t.add_column("Created on", width: 30) { |n| n[1] }
+    t.add_column("Created on", width: 28) { |n| n[1] }
     t.add_column("Title", width: 14) { |n| n[2] }
   end
 

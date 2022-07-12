@@ -198,7 +198,6 @@ class Cli < Clim
 
       run do
         list_notes
-        exit
       end
     end
 
