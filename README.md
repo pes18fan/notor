@@ -1,5 +1,7 @@
 # notor
 
+## Note: This program is no longer under development.
+
 A terminal app for taking notes.
 
 ## Installation
