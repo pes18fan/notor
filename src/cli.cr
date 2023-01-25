@@ -70,7 +70,7 @@ class Cli < Clim
     USAGE
 
     help short: "-h"
-    version "notor version #{Globals.version}\nWritten by pes18fan, 2022.", short: "-v"
+    version "notor version #{Globals.version}\nCreated by pes18fan in 2022.", short: "-v"
 
     # Subcommand to create a new note.
     sub "new" do

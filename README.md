@@ -1,8 +1,6 @@
 # notor
 
-## Note: This program is no longer under development.
-
-A terminal app for taking notes.
+A simple terminal program for taking notes. 
 
 ## Installation
 
@@ -15,7 +13,7 @@ Install [Crystal and Shards (Crystal's package manager)](https://crystal-lang.or
 Then, clone the repo.
 
 ```bash
-git clone https://www.github.com/pes18fan141/notor.git
+git clone https://www.github.com/pes18fan/notor.git
 ```
 
 Go into the directory and build and install as follows.
@@ -108,9 +106,13 @@ $ notor conf pager less # sets less as the default pager
 $ notor conf paging true # always use the pager
 ```
 
+## About
+
+Not much to write home about this. I guess I'd consider this my first proper project, one I made since I was kinda frustrated due to not having made something that actually does something useful. Guess this kinda fixed that problem eh? About the name, don't ask me, got no idea where it comes from, just got it in my mind after brainstorming and thought it sounded cool lol.
+
 ## Contributing
 
-1. Fork it (<https://github.com/pes18fan141/notor/fork>)
+1. Fork it (<https://github.com/pes18fan/notor/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -118,4 +120,4 @@ $ notor conf paging true # always use the pager
 
 ## Contributors
 
-- [pes18fan141](https://github.com/pes18fan141) - creator and maintainer
+- [pes18fan](https://github.com/pes18fan) - creator and maintainer
