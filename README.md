@@ -1,3 +1,7 @@
+# ARCHIVAL NOTICE
+
+This project is no longer under development.
+
 # notor
 
 A simple terminal program for taking notes. 
